@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Dance - Guía Estratégica Pokémon</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131c2e;
+            --text-color: #c5d1e8;
+            --accent-color: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.2);
+            --border-color: #1e293b;
+            --highlight: #f43f5e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            background: linear-gradient(180deg, rgba(19, 28, 46, 0.6) 0%, rgba(11, 15, 25, 0) 100%);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #899bb5;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Dashboard Overview */
+        .grid-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .pokemon-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .pokemon-list li {
+            background-color: #1e293b;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #f1f5f9;
+            border: 1px solid #334155;
+        }
+
+        /* Region Navigation Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* Region Content Sections */
+        .region-section {
+            display: none;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .region-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .region-section h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .gym-block {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .gym-block:last-child {
+            border-bottom: none;
+        }
+
+        .gym-title {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .note {
+            background-color: rgba(244, 63, 94, 0.1);
+            border-left: 4px solid var(--highlight);
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>✨ Steller Dance ✨</h1>
+        <p>Guía Estratégica Completa (Psycho Red Guide)</p>
+        <div class="links-container">
+            <a href="https://space.bilibili.com/185506280" target="_blank" class="btn">Creador (不法入侵)</a>
+            <a href="https://www.bilibili.com/video/BV1mZMz6LEyn/" target="_blank" class="btn">Video de Referencia</a>
+            <a href="https://pokepast.es/981af348541f712e" target="_blank" class="btn">Pokepast</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- General Info Cards -->
+        <div class="grid-info">
+            <div class="card">
+                <h3>🎒 Mochila y Objetos</h3>
+                <p><strong>21 Objetos X</strong> (2 Precisión + 1 Velocidad + el resto Ataque Especial X).</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #899bb5;">Considera que los usarás en todos los gimnasio que lo requieran desde el inicio (Lead).</p>
+            </div>
+            <div class="card">
+                <h3>🎨 Pokémon del Equipo</h3>
+                <ul class="pokemon-list">
+                    <li>Heatran</li>
+                    <li>Meloetta</li>
+                    <li>Weezing</li>
+                    <li>Blastoise</li>
+                    <li>Vanilluxe</li>
+                    <li>Typhlosion</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Region Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchRegion('hoenn')">Hoenn</button>
+            <button class="tab-btn" onclick="switchRegion('unova')">Unova (Teselia)</button>
+            <button class="tab-btn" onclick="switchRegion('kanto')">Kanto</button>
+            <button class="tab-btn" onclick="switchRegion('johto')">Johto</button>
+            <button class="tab-btn" onclick="switchRegion('sinnoh')">Sinnoh</button>
+        </div>
+
+        <!-- HOENN SECTION -->
+        <section id="hoenn" class="region-section active">
+            <h2>🌊 Hoenn</h2>
+            
+            <div class="gym-block">
+                <div class="gym-title">1. Lavaridge (Pueblo Fumarola)</div>
+                <p><strong>Líder / Lead: Blastoise y Vanilluxe</strong></p>
+                <p>Usa: <em>Danza Lluvia + Salpicar (Water Spout)</em></p>
+                <ul>
+                    <li><strong>vs. Houndoom:</strong> Salpicar + Voz Arrulladora (Hyper Voice)</li>
+                    <li><strong>vs. Arcanine (Nivel 85):</strong> Salpicar + Danza Lluvia
+                        <ul>
+                            <li><strong>Turno 2:</strong> Salpicar + Ataque Esp. X [En Blastoise]</li>
+                            <li><strong>Turno 3:</strong> Salpicar + Danza Lluvia</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">2. Mauville (Ciudad Malvalona)</div>
+                <p>Erupción + Voz Arrulladora</p>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">3. Dewford (Pueblo Azuliza)</div>
+                <p>Salpicar + Ventisca</p>
+                <ul>
+                    <li><strong>vs. Staraptor y Hitmontop:</strong> Ataque Esp. X + Ventisca
+                        <ul>
+                            <li><strong>Turno 2, 3:</strong> Salpicar + Ventisca</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="note">⚠️ [CURACIÓN #1 o Baya Zidra / Leppa en Salpicar]</div>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">4. Rustboro (Ciudad Férrica)</div>
+                <p>Salpicar + Asegurar (Assurance)</p>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">5. Petalburg (Ciudad Petalia) [Opcional]</div>
+                <ul>
+                    <li><strong>vs. Spinda / Blissey:</strong> Erupción + Pluma de Lava (Lava Plume)</li>
+                    <li><strong>vs. Chansey:</strong> Erupción + Ataque Esp. X ➔ (T2-T4: Erupción + Pluma de Lava)</li>
+                    <li><strong>vs. Kecleon:</strong> Erupción + Ataque Esp. X ➔ (T2-T3: Erupción + Pluma de Lava)</li>
+                    <li><strong>vs. Stantler:</strong> Pluma de Lava + Pluma de Lava</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">6. Fortree (Ciudad Arborada)</div>
+                <ul>
+                    <li><strong>vs. Pelipper:</strong> Refuerzo (Helping Hand) + Explosión ➔ Ventisca + Voz Arrulladora</li>
+                    <li><strong>vs. Swellow:</strong> Amago (Fake Out) + Explosión ➔ Ventisca + Voz Arrulladora</li>
+                    <li><strong>vs. Masquerain:</strong> Refuerzo + Explosión ➔ Voz Arrulladora + Rayo Hielo (Altaria/Noctowl)</li>
+                </ul>
+                <div class="note">⚠️ [CURACIÓN #2]</div>
+            </div>
+        </section>
+
+        <!-- UNOVA SECTION -->
+        <section id="unova" class="region-section">
+            <h2>⚡ Unova (Teselia)</h2>
+            
+            <div class="gym-block">
+                <div class="gym-title">1. Castelia (Ciudad Porcelana)</div>
+                <ul>
+                    <li><strong>vs. Gliscor:</strong> Erupción + Burbuja</li>
+                    <li><strong>vs. Shuckle / Volcarona:</strong> Incineración + Salpicar</li>
+                    <li><strong>vs. Flygon / Otros:</strong> Erupción + Salpicar</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">2. Nimbasa (Ciudad Mayólica)</div>
+                <ul>
+                    <li><strong>vs. Milotic:</strong> Ataque Esp. X + Voz Arrulladora
+                        <ul>
+                            <li><strong>Turno 2:</strong> Cambiar Blastoise por Typhlosion + Voz Arrulladora</li>
+                            <li><strong>Turno 3:</strong> Erupción + Voz Arrulladora</li>
+                        </ul>
+                    </li>
+                    <li><strong>vs. Emolga:</strong> Salpicar + Voz Arrulladora (T2: Salpicar + Ataque Esp. X)</li>
+                    <li><strong>vs. Stunfisk:</strong> Salpicar + Meloetta cambia a Vanilluxe (T2-T3: Salpicar + Voz Arrulladora)</li>
+                    <li><strong>Galvantula / Doble Intimidación:</strong> Salpicar + Voz Arrulladora</li>
+                </ul>
+                <div class="note">⚠️ [Baya Leppa en Salpicar]</div>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">3. Driftveil (Ciudad Fayenza)</div>
+                <ul>
+                    <li><strong>vs. Sandslash:</strong> Danza Lluvia + Salpicar</li>
+                    <li><strong>vs. Steelix:</strong> Cambiar Vanilluxe por Weezing + Salpicar (T2-T3: Asegurar + Salpicar)</li>
+                    <li><strong>vs. Torterra:</strong> Ventisca + Salpicar (T2: Cambiar Vanilluxe por Meloetta + Salpicar)</li>
+                    <li><strong>vs. Excadrill:</strong> Cambiar Vanilluxe por Weezing + Salpicar</li>
+                    <li><strong>vs. Seismitoad:</strong> Ventisca + Ataque Esp. X (T2-T3: Ventisca + Burbuja)</li>
+                </ul>
+                <div class="note">⚠️ [Curar con mucho cuidado para dejar Agua a Plena Salud]</div>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">4. Mistralton (Ciudad Loza)</div>
+                <p>Ventisca + Salpicar</p>
+                <ul>
+                    <li><strong>vs. Unfezant / Pelipper / Swanna:</strong> Voz Arrulladora + Salpicar (Si se activa Carta Roja: Movimiento en Área + Salpicar)</li>
+                    <li><strong>Otros:</strong> Ataque Esp. X + Salpicar</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">5. Icirrus (Ciudad Teja)</div>
+                <p>Pluma de Lava + Precisión X</p>
+                <ul>
+                    <li><strong>Turno 2, 3:</strong> Pluma de Lava + Pluma de Lava</li>
+                    <li><strong>vs. Beartic:</strong> Pluma de Lava + Erupción (T2: Precisión X + Erupción)</li>
+                </ul>
+                <div class="note">⚠️ [Prestar atención a los PP de Heatran]</div>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">6. Gimnasio Planta / Striaton</div>
+                <p>Erupción + Incineración</p>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">7. Gimnasio Agua / Striaton</div>
+                <p>Erupción + Ataque Esp. X (T2-T3: Erupción + Asegurar)</p>
+                <p><strong>vs. Slowbro:</strong> Incineración + Explosión (T2-T3: Refuerzo + Voz Arrulladora)</p>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">8. Gimnasio Fuego / Striaton</div>
+                <p>Danza Lluvia + Salpicar (T2: Leppa en Salpicar + Salpicar)</p>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">9. Nacrene (Ciudad Esmirna) [Opcional]</div>
+                <ul>
+                    <li><strong>vs. Doble Huevo:</strong> Erupción + Explosión (T2-T3: Salpicar + Ventisca)</li>
+                    <li><strong>vs. Stantler / Dragonite / Braviary:</strong> Erupción + Asegurar</li>
+                    <li><strong>vs. Snorlax:</strong> Erupción + Ataque Esp. X</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">10. Opelucid (Ciudad Caolín)</div>
+                <ul>
+                    <li><strong>vs. Serperior / Dragonite:</strong> Ventisca + Voz Arrulladora</li>
+                    <li><strong>vs. Aggron:</strong> Ventisca + Psíquico</li>
+                    <li><strong>vs. Druddigon:</strong> Ataque Esp. X + Voz Arrulladora</li>
+                    <li><strong>vs. Hydreigon (Método 1):</strong> Ventisca + Rayo (Priorizar Aggron + Haxorus)</li>
+                    <li><strong>vs. Hydreigon (Método 2):</strong> Ventisca + Cambiar Meloetta por Typhlosion ➔ Ventisca + Erupción</li>
+                </ul>
+                <div class="note">⚠️ [CURACIÓN #3]</div>
+            </div>
+        </section>
+
+        <!-- KANTO SECTION -->
+        <section id="kanto" class="region-section">
+            <h2>🔥 Kanto</h2>
+            
+            <div class="gym-block">
+                <div class="gym-title">1. Vermilion (Ciudad Azafrán / Vermilion)</div>
+                <p>Erupción + Voz Arrulladora</p>
+                <p><em>Si hay Lluvia:</em> Ataque Esp. X + Voz Arrulladora</p>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">2. Saffron (Ciudad Azafrán) [Opcional]</div>
+                <ul>
+                    <li><strong>vs. Metagross:</strong> Erupción + Cambiar Weezing por Blastoise (T2-T3: Erupción + Salpicar)</li>
+                    <li><strong>vs. Slowking / Lapras:</strong> Erupción + Asegurar (4 Turnos)</li>
+                    <li><strong>vs. Scizor:</strong> Erupción + Cambiar Weezing por Meloetta (T2-T3: Erupción + Voz Arrulladora)</li>
+                    <li><strong>vs. Snorlax (Método 1):</strong> Erupción + Ataque Esp. X ➔ Erupción + Velocidad X</li>
+                </ul>
+                <div class="note">⚠️ [CURACIÓN #4] — 🚨 ¡Equipar Gafas Elección (Choice Specs) a Heatran!</div>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">3. Celadon (Ciudad Azulona)</div>
+                <p>Erupción + Cambiar Typhlosion por Weezing ➔ Erupción + Asegurar</p>
+                <ul>
+                    <li><strong>vs. Dragonite:</strong> Erupción + Pluma de Lava (T2: Cambiar Typhlosion por Weezing ➔ Erupción + Asegurar)</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">4. Fuchsia (Ciudad Fucsia)</div>
+                <ul>
+                    <li><strong>vs. Ariados / Beedrill:</strong> Erupción + Ida y Vuelta (U-turn) ➔ Erupción + Asegurar</li>
+                    <li><strong>vs. Tentacruel:</strong> Ataque Esp. X + Voz Arrulladora ➔ Erupción + Voz Arrulladora</li>
+                    <li><strong>vs. Nidoqueen (Zoroark Falso):</strong> Erupción + Voz Arrulladora</li>
+                    <li><strong>vs. Nidoqueen (Real con Gengar + Electrode):</strong> Erupción + Ida y Vuelta (Gengar) ➔ Erupción + Ventisca</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">5. Pewter (Ciudad Plateada)</div>
+                <ul>
+                    <li><strong>vs. Toxicroak:</strong> Salpicar + Asegurar</li>
+                    <li><strong>vs. Tyranitar + Golem:</strong> Salpicar + Precisión X ➔ Salpicar + Asegurar</li>
+                    <li><strong>vs. Swampert:</strong> Salpicar + Asegurar (Priorizar Steelix > Crobat)</li>
+                    <li><strong>vs. Ludicolo:</strong> Salpicar + Asegurar (Priorizar Kabutops > Pescado)</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">6. Cerulean (Ciudad Celeste) [Modo Ahorro de Medicinas]</div>
+                <ul>
+                    <li><strong>vs. Carracosta:</strong> Salpicar + Explosión ➔ Pluma de Lava + Erupción</li>
+                    <li><strong>vs. Poliwrath:</strong> Refuerzo + Explosión ➔ Pluma de Lava + Pluma de Lava</li>
+                    <li><strong>vs. Kingdra:</strong> Refuerzo + Explosión ➔ Ventisca + Voz Arrulladora</li>
+                    <li><strong>vs. Floatzel:</strong> Amago + Explosión ➔ Voz Arrulladora + Erupción</li>
+                </ul>
+                <div class="note">⚠️ [CURACIÓN #5]</div>
+            </div>
+        </section>
+
+        <!-- JOHTO SECTION -->
+        <section id="johto" class="region-section">
+            <h2>⚙️ Johto</h2>
+            
+            <div class="gym-block">
+                <div class="gym-title">1. Olivine (Ciudad Olivo)</div>
+                <p>Erupción + Asegurar</p>
+                <ul>
+                    <li><strong>vs. Metagross:</strong> Erupción + Ataque Esp. X ➔ Erupción + Asegurar</li>
+                    <li><strong>vs. Klinklang:</strong> Erupción + Asegurar (Si Blastoise + Togekiss: Ataque Esp. X + Erupción)</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">2. Goldenrod (Ciudad Trigal)</div>
+                <ul>
+                    <li><strong>vs. Tauros:</strong> Voz Arrulladora + Incineración</li>
+                    <li><strong>vs. Dodrio:</strong> Voz Arrulladora + Erupción</li>
+                    <li><strong>vs. Ambipom:</strong> Pluma de Lava + Ida y Vuelta ➔ Pluma de Lava + Pluma de Lava</li>
+                    <li><strong>vs. Cinccino:</strong> Erupción + Ida y Vuelta (Excadrill) ➔ Erupción + Asegurar (Priorizar Bibarel > Blissey)</li>
+                    <li><strong>vs. Ursaring:</strong> Erupción + Cambiar Meloetta a Weezing ➔ Erupción + Asegurar</li>
+                </ul>
+                <div class="note">⚠️ [Baya Leppa en Erupción (~2 PP)]</div>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">3. Azalea (Pueblo Azalea)</div>
+                <ul>
+                    <li><strong>vs. Scizor + Forretress:</strong> Ida y Vuelta + Pluma de Lava ➔ Pluma de Lava + Pluma de Lava</li>
+                    <li><strong>vs. Ledian / Scyther:</strong> Cambiar Meloetta por Typhlosion + Pluma de Lava ➔ Pluma de Lava + Pluma de Lava</li>
+                    <li><strong>vs. Butterfree:</strong> Ida y Vuelta + Pluma de Lava ➔ Pluma de Lava + Pluma de Lava</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">4. Mahogany (Pueblo Caoba)</div>
+                <ul>
+                    <li><strong>vs. Articuno:</strong> Día Soleado + Erupción, Cambiar Typhlosion por Weezing ➔ Asegurar + Erupción</li>
+                    <li><strong>vs. Mamoswine:</strong> Precisión X + Pluma de Lava ➔ Pluma de Lava + Pluma de Lava</li>
+                    <li><strong>vs. Walrein / Dewgong:</strong> Ataque Esp. X + Erupción ➔ Día Soleado + Erupción</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">5. Cianwood (Ciudad Orquídea)</div>
+                <ul>
+                    <li><strong>vs. Granbull:</strong> Ataque Esp. X + Voz Arrulladora ➔ Incineración + Voz Arrulladora</li>
+                    <li><strong>vs. Machamp:</strong> Ataque Esp. X + Voz Arrulladora ➔ Erupción + Voz Arrulladora</li>
+                    <li><strong>vs. Poliwrath:</strong> Erupción + Psíquico (Poliwrath) ➔ Erupción + Ataque Esp. X</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">6. Violet (Ciudad Malva)</div>
+                <p>Ventisca + Salpicar</p>
+                <ul>
+                    <li><strong>vs. Drizzle (Llovizna):</strong> Rayo Hielo + Salpicar, Cambiar Vanilluxe por Meloetta + Salpicar</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">7. Blackthorn (Ciudad Endrino)</div>
+                <p>Explosión + Refuerzo ➔ Ventisca + Voz Arrulladora</p>
+                <div class="note">⚠️️ [CURACIÓN #6]</div>
+            </div>
+        </section>
+
+        <!-- SINNOH SECTION -->
+        <section id="sinnoh" class="region-section">
+            <h2>💎 Sinnoh</h2>
+            
+            <div class="gym-block">
+                <div class="gym-title">1. Oreburgh (Ciudad Pirita)</div>
+                <p>Salpicar + Asegurar</p>
+                <ul>
+                    <li><strong>vs. Tyranitar + Excadrill:</strong> Ataque Esp. X + Salpicar ➔ Salpicar + Asegurar</li>
+                    <li><strong>vs. Probopass:</strong> Salpicar + Cambiar Weezing por Vanilluxe ➔ Salpicar + Ventisca</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">2. Veilstone (Ciudad Vetusta / Veilstone)</div>
+                <p>Refuerzo + Erupción</p>
+                <ul>
+                    <li><strong>vs. Mienshao:</strong> Burbuja + Erupción</li>
+                    <li><strong>vs. Breloom:</strong> Ataque Esp. X + Erupción ➔ Refuerzo + Erupción</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">3. Sunyshore (Ciudad Marina)</div>
+                <p>Salpicar + Voz Arrulladora</p>
+                <ul>
+                    <li><strong>vs. Lanturn:</strong> Ataque Esp. X + Voz Arrulladora ➔ Salpicar + Voz Arrulladora</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">4. Eterna (Ciudad Vetusta)</div>
+                <ul>
+                    <li><strong>vs. Leavanny / Whimsicott / Rotom:</strong> Ida y Vuelta + Pluma de Lava ➔ Pluma de Lava + Pluma de Lava</li>
+                    <li><strong>vs. Roserade:</strong> Erupción + Voz Arrulladora</li>
+                    <li><strong>vs. Ninetales:</strong> Incineración + Voz Arrulladora ➔ Incineración + Cambiar Meloetta por Weezing, Asegurar</li>
+                </ul>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">5. Hearthome (Ciudad Corazón) [Opcional]</div>
+                <ul>
+                    <li><strong>vs. Misdreavus:</strong> Pluma de Lava + Pluma de Lava</li>
+                    <li><strong>vs. Marowak / Haunter:</strong> Pluma de Lava + Erupción</li>
+                    <li><strong>vs. Mismagius:</strong> Pluma de Lava + Erupción, Cambiar Typhlosion por Weezing ➔ Erupción + Asegurar</li>
+                    <li><strong>vs. Gengar (Sin Maldición):</strong> Pluma de Lava + Cambiar Heatran por Weezing ➔ Pluma de Lava + Asegurar</li>
+                </ul>
+                <div class="note">⚠️ [CURACIÓN #7]</div>
+            </div>
+
+            <div class="gym-block">
+                <div class="gym-title">6. Pastoria (Ciudad Pradera)</div>
+                <ul>
+                    <li><strong>vs. Sharpedo + Mantine:</strong> Incineración + Explosión ➔ Ataque Esp. X + Voz Arrulladora ➔ Erupción + Voz Arrulladora</li>
+                    <li><strong>vs. Ludicolo:</strong> Día Soleado + Explosión ➔ Erupción + Voz Arrulladora</li>
+                    <li><strong>vs. Sharpedo + Gyarados:</strong> Incineración + Explosión ➔ Erupción + Voz Arrulladora</li>
+                </ul>
+                <div class="note">🚨 ¡Equipar Pañuelo Elección (Choice Scarf) a Heatran!</div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Stellar Dance Guide - Traducido y Adaptado para la Comunidad Pokémon</p>
+    </footer>
+
+    <script>
+        function switchRegion(regionId) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.region-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            // Desactivar todos los botones
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Activar la sección y botón correspondiente
+            document.getElementById(regionId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
