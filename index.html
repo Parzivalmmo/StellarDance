@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stellar Dance - Guía Estratégica Pokémon Ciberespacio</title>
+    <!-- Importamos una fuente estilo cómic llamativa desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #07090f;
             --panel-bg: #0d1322;
             --panel-hover: #131c31;
-            --text-main: #c4d1e1;
-            --text-muted: #7b8ea8;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
             --accent-cyan: #00f0ff;
             --accent-purple: #b026ff;
             --accent-glow: rgba(0, 240, 255, 0.15);
@@ -23,13 +25,16 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Aplicamos la fuente estilo cómic en mayúsculas a toda la página */
+            font-family: 'Bangers', 'Comic Neue', cursive, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.5;
             padding: 20px;
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(176, 38, 255, 0.03) 0%, transparent 40%),
@@ -39,23 +44,23 @@
         header {
             text-align: center;
             padding: 40px 20px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 2px solid var(--accent-cyan);
             margin-bottom: 30px;
-            background: linear-gradient(180deg, rgba(13, 19, 34, 0.8) 0%, rgba(7, 9, 15, 0) 100%);
+            background: linear-gradient(180deg, rgba(13, 19, 34, 0.9) 0%, rgba(7, 9, 15, 0) 100%);
             border-radius: 12px;
             box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
         header h1 {
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             color: #ffffff;
             margin-bottom: 10px;
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px var(--accent-cyan);
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 0px var(--accent-purple), 0 0 20px var(--accent-cyan);
         }
 
         header p {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             color: var(--text-muted);
         }
 
@@ -70,11 +75,12 @@
         .btn {
             background-color: var(--panel-bg);
             color: var(--accent-cyan);
-            padding: 8px 16px;
-            border: 1px solid var(--accent-cyan);
-            border-radius: 6px;
+            padding: 10px 18px;
+            border: 2px solid var(--accent-cyan);
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 0 8px var(--accent-glow);
         }
@@ -101,7 +107,7 @@
 
         .card {
             background-color: var(--panel-bg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: 10px;
             padding: 25px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
@@ -109,18 +115,16 @@
         }
 
         .card:hover {
-            border-color: var(--border-glow);
+            border-color: var(--accent-cyan);
         }
 
         .card h3 {
-            color: #ffffff;
+            color: var(--accent-cyan);
             margin-bottom: 15px;
-            border-bottom: 2px solid var(--accent-purple);
+            border-bottom: 2px dashed var(--accent-purple);
             padding-bottom: 8px;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
         }
 
         .pokemon-showcase {
@@ -132,7 +136,7 @@
 
         .poke-item {
             background: rgba(26, 38, 61, 0.5);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: 8px;
             text-align: center;
             padding: 8px;
@@ -140,28 +144,27 @@
         }
 
         .poke-item:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
             border-color: var(--accent-cyan);
         }
 
         .poke-item img {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             object-fit: contain;
         }
 
         .poke-item span {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.9rem;
             color: var(--text-main);
             margin-top: 4px;
-            font-weight: bold;
         }
 
-        /* Region Navigation Bar / Indicator Panel */
+        /* Region Navigation Panel & Indicator */
         .nav-panel {
             background-color: var(--panel-bg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 30px;
@@ -170,17 +173,15 @@
         }
 
         .current-indicator {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             color: var(--text-muted);
             margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .current-indicator span {
             color: var(--accent-cyan);
-            font-weight: bold;
-            font-size: 1.3rem;
+            font-size: 1.6rem;
             text-shadow: 0 0 10px var(--accent-glow);
             margin-left: 5px;
         }
@@ -195,12 +196,11 @@
         .tab-btn {
             background-color: var(--bg-color);
             color: var(--text-muted);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: 1.2rem;
             transition: all 0.3s;
         }
 
@@ -215,7 +215,7 @@
         .region-section {
             display: none;
             background-color: var(--panel-bg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: 10px;
             padding: 40px;
             animation: fadeIn 0.4s ease-in-out;
@@ -234,19 +234,17 @@
         .region-section h2 {
             color: #ffffff;
             margin-bottom: 30px;
-            font-size: 2rem;
-            border-bottom: 2px solid var(--accent-cyan);
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--accent-cyan);
             padding-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            letter-spacing: 2px;
         }
 
         .gym-block {
             display: flex;
             gap: 25px;
-            background: rgba(11, 15, 25, 0.4);
-            border: 1px solid var(--border-color);
+            background: rgba(11, 15, 25, 0.5);
+            border: 2px solid var(--border-color);
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
@@ -255,27 +253,27 @@
         }
 
         .gym-block:hover {
-            border-color: rgba(0, 240, 255, 0.2);
-            background: rgba(11, 15, 25, 0.7);
+            border-color: var(--accent-cyan);
+            background: rgba(11, 15, 25, 0.8);
         }
 
-        .gym-gif-container {
+        .leader-avatar {
             flex-shrink: 0;
             width: 90px;
             height: 90px;
             background: var(--bg-color);
-            border: 2px solid var(--accent-cyan);
+            border: 3px solid var(--accent-purple);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            box-shadow: 0 0 10px var(--accent-glow);
+            box-shadow: 0 0 12px rgba(176, 38, 255, 0.4);
         }
 
-        .gym-gif-container img {
-            width: 70px;
-            height: 70px;
+        .leader-avatar img {
+            width: 75px;
+            height: 75px;
             object-fit: contain;
         }
 
@@ -284,10 +282,10 @@
         }
 
         .gym-title {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             color: var(--accent-cyan);
             margin-bottom: 8px;
-            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         ul {
@@ -298,16 +296,18 @@
         li {
             margin-bottom: 6px;
             color: var(--text-main);
+            font-size: 1.1rem;
         }
 
         .note {
-            background-color: rgba(255, 51, 102, 0.1);
-            border-left: 4px solid var(--highlight);
+            background-color: rgba(255, 51, 102, 0.15);
+            border-left: 5px solid var(--highlight);
             padding: 10px 15px;
             margin: 10px 0;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             border-radius: 0 6px 6px 0;
             color: #ff99b3;
+            letter-spacing: 1px;
         }
 
         footer {
@@ -315,8 +315,9 @@
             margin-top: 60px;
             padding: 25px;
             color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
+            font-size: 1.1rem;
+            border-top: 2px solid var(--border-color);
+            letter-spacing: 2px;
         }
 
         @media (max-width: 768px) {
@@ -336,10 +337,10 @@
 
     <header>
         <h1>⚡ STELLER DANCE ⚡</h1>
-        <p>Guía Estratégica Avanzada — Psycho Red Guide</p>
+        <p>GUÍA ESTRATÉGICA AVANZADA — PSYCHO RED GUIDE</p>
         <div class="links-container">
-            <a href="https://space.bilibili.com/185506280" target="_blank" class="btn">Creador (不法入侵)</a>
-            <a href="https://www.bilibili.com/video/BV1mZMz6LEyn/" target="_blank" class="btn">Video de Referencia</a>
+            <a href="https://space.bilibili.com/185506280" target="_blank" class="btn">Creador (Bilibili)</a>
+            <a href="https://www.bilibili.com/video/BV1mZMz6LEyn/" target="_blank" class="btn">Video Referencia</a>
             <a href="https://pokepast.es/981af348541f712e" target="_blank" class="btn">Pokepast Oficial</a>
         </div>
     </header>
@@ -351,7 +352,7 @@
             <div class="card">
                 <h3>🎒 Mochila y Objetos Clave</h3>
                 <p><strong>21 Objetos X</strong> (2 Precisión + 1 Velocidad + resto Ataque Especial X).</p>
-                <p style="margin-top: 10px; font-size: 0.95rem; color: var(--text-muted);">Diseñado para usarse en todos los gimnasios requeridos desde el inicio (Lead).</p>
+                <p style="margin-top: 10px; color: var(--text-muted);">Diseñado para usarse en todos los gimnasios requeridos desde el inicio (Lead).</p>
             </div>
             <div class="card">
                 <h3>🔥 Equipo Pokémon Principal</h3>
@@ -403,12 +404,12 @@
             <h2>🌊 Región Hoenn</h2>
             
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise Lead">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/flannery.png" alt="Flannery">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">1. Lavaridge (Pueblo Fumarola)</div>
-                    <p><strong>Líder / Lead: Blastoise y Vanilluxe</strong></p>
+                    <div class="gym-title">1. Lavaridge (Pueblo Fumarola) — Líder: Candela (Flannery)</div>
+                    <p><strong>Lead: Blastoise y Vanilluxe</strong></p>
                     <p>Estrategia: <em>Danza Lluvia + Salpicar (Water Spout)</em></p>
                     <ul>
                         <li><strong>vs. Houndoom:</strong> Salpicar + Voz Arrulladora</li>
@@ -423,21 +424,21 @@
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/wattson.png" alt="Wattson">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">2. Mauville (Ciudad Malvalona)</div>
+                    <div class="gym-title">2. Mauville (Ciudad Malvalona) — Líder: Erico (Wattson)</div>
                     <p>Erupción + Voz Arrulladora</p>
                 </div>
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/vanilluxe.gif" alt="Vanilluxe">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/brawly.png" alt="Brawly">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">3. Dewford (Pueblo Azuliza)</div>
+                    <div class="gym-title">3. Dewford (Pueblo Azuliza) — Líder: Marcial (Brawly)</div>
                     <p>Salpicar + Ventisca</p>
                     <ul>
                         <li><strong>vs. Staraptor & Hitmontop:</strong> Ataque Esp. X + Ventisca (T2, T3: Salpicar + Ventisca)</li>
@@ -447,21 +448,21 @@
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/roxanne.png" alt="Roxanne">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">4. Rustboro (Ciudad Férrica)</div>
+                    <div class="gym-title">4. Rustboro (Ciudad Férrica) — Líder: Petra (Roxanne)</div>
                     <p>Salpicar + Asegurar (Assurance)</p>
                 </div>
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/blissey.gif" alt="Blissey">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/norman.png" alt="Norman">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">5. Petalburg (Ciudad Petalia) [Opcional]</div>
+                    <div class="gym-title">5. Petalburg (Ciudad Petalia) — Líder: Norman [Opcional]</div>
                     <ul>
                         <li><strong>vs. Spinda / Blissey:</strong> Erupción + Pluma de Lava</li>
                         <li><strong>vs. Chansey / Kecleon:</strong> Erupción + Ataque Esp. X ➔ (T2-T3: Pluma de Lava)</li>
@@ -471,11 +472,11 @@
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/pelipper.gif" alt="Pelipper">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/winona.png" alt="Winona">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">6. Fortree (Ciudad Arborada)</div>
+                    <div class="gym-title">6. Fortree (Ciudad Arborada) — Líder: Alana (Winona)</div>
                     <ul>
                         <li><strong>vs. Pelipper / Swellow:</strong> Refuerzo + Explosión ➔ Ventisca + Voz Arrulladora</li>
                         <li><strong>vs. Masquerain:</strong> Refuerzo + Explosión ➔ Voz Arrulladora + Rayo Hielo</li>
@@ -490,39 +491,26 @@
             <h2>⚡ Región Unova (Teselia)</h2>
             
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/volcarona.gif" alt="Volcarona">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/elesa.png" alt="Elesa">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">1. Castelia (Ciudad Porcelana)</div>
+                    <div class="gym-title">1. Castelia & Nimbasa — Líderes: Camus (Burgh) y Camila (Elesa)</div>
                     <ul>
-                        <li><strong>vs. Gliscor:</strong> Erupción + Burbuja</li>
-                        <li><strong>vs. Shuckle / Volcarona:</strong> Incineración + Salpicar</li>
-                        <li><strong>vs. Flygon / Otros:</strong> Erupción + Salpicar</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/milotic.gif" alt="Milotic">
-                </div>
-                <div class="gym-content">
-                    <div class="gym-title">2. Nimbasa (Ciudad Mayólica)</div>
-                    <ul>
-                        <li><strong>vs. Milotic:</strong> Ataque Esp. X + Voz Arrulladora (T2: Cambiar Blastoise por Typhlosion + Voz Arrulladora)</li>
+                        <li><strong>vs. Gliscor / Volcarona:</strong> Erupción + Burbuja / Incineración + Salpicar</li>
+                        <li><strong>vs. Milotic:</strong> Ataque Esp. X + Voz Arrulladora (Cambio a Typhlosion T2)</li>
                         <li><strong>vs. Emolga / Stunfisk:</strong> Salpicar + Voz Arrulladora</li>
                     </ul>
-                    <div class="note">⚠️ [Baya Leppa en Salpicar]</div>
+                    <div class="note">⚠️️ [Baya Leppa en Salpicar]</div>
                 </div>
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/excadrill.gif" alt="Excadrill">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/clay.png" alt="Clay">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">3. Driftveil (Ciudad Fayenza)</div>
+                    <div class="gym-title">2. Driftveil (Ciudad Fayenza) — Líder: Anís (Clay)</div>
                     <ul>
                         <li><strong>vs. Sandslash:</strong> Danza Lluvia + Salpicar</li>
                         <li><strong>vs. Steelix / Excadrill:</strong> Cambiar Vanilluxe por Weezing + Salpicar</li>
@@ -534,43 +522,42 @@
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/unfezant.gif" alt="Unfezant">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/skyla.png" alt="Skyla">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">4. Mistralton (Ciudad Loza)</div>
+                    <div class="gym-title">3. Mistralton (Ciudad Loza) — Líder: Gerania (Skyla)</div>
                     <p>Ventisca + Salpicar</p>
                     <ul>
-                        <li><strong>vs. Unfezant / Pelipper:</strong> Voz Arrulladora + Salpicar (Si Carta Roja activa: Movimiento en Área + Salpicar)</li>
+                        <li><strong>vs. Unfezant / Pelipper:</strong> Voz Arrulladora + Salpicar</li>
                     </ul>
                 </div>
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/beartic.gif" alt="Beartic">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/brycen.png" alt="Brycen">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">5. Icirrus (Ciudad Teja)</div>
-                    <p>Pluma de Lava + Precisión X (T2, T3: Pluma de Lava x2)</p>
+                    <div class="gym-title">4. Icirrus (Ciudad Teja) — Líder: Hachidakzu (Brycen)</div>
+                    <p>Pluma de Lava + Precisión X</p>
                     <ul>
                         <li><strong>vs. Beartic:</strong> Pluma de Lava + Erupción</li>
                     </ul>
-                    <div class="note">⚠️️ [Atención a los PP de Heatran]</div>
+                    <div class="note">⚠️ [Atención a los PP de Heatran]</div>
                 </div>
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/hydreigon.gif" alt="Hydreigon">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/drayden.png" alt="Drayden">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">6. Opelucid (Ciudad Caolín)</div>
+                    <div class="gym-title">5. Opelucid (Ciudad Caolín) — Líder: Iris / Lirio (Drayden)</div>
                     <ul>
                         <li><strong>vs. Serperior / Dragonite:</strong> Ventisca + Voz Arrulladora</li>
                         <li><strong>vs. Aggron:</strong> Ventisca + Psíquico</li>
-                        <li><strong>vs. Druddigon:</strong> Ataque Esp. X + Voz Arrulladora</li>
-                        <li><strong>vs. Hydreigon:</strong> Ventisca + Rayo (Priorizar Aggron + Haxorus)</li>
+                        <li><strong>vs. Hydreigon:</strong> Ventisca + Rayo</li>
                     </ul>
                     <div class="note">⚠️ [CURACIÓN #3]</div>
                 </div>
@@ -582,11 +569,11 @@
             <h2>🔥 Región Kanto</h2>
             
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/raichu.gif" alt="Vermilion">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/lt-surge.png" alt="Lt. Surge">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">1. Vermilion & Saffron</div>
+                    <div class="gym-title">1. Vermilion & Saffron — Líderes: Lt. Surge y Sabrina</div>
                     <p>Erupción + Voz Arrulladora</p>
                     <ul>
                         <li><strong>vs. Metagross / Scizor:</strong> Erupción + Cambiar Weezing por Blastoise / Meloetta</li>
@@ -596,11 +583,11 @@
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/dragonite.gif" alt="Dragonite">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/erika.png" alt="Erika">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">2. Celadon & Fuchsia</div>
+                    <div class="gym-title">2. Celadon & Fuchsia — Líderes: Erika y Koga / Sachiko</div>
                     <ul>
                         <li><strong>vs. Dragonite:</strong> Erupción + Pluma de Lava</li>
                         <li><strong>vs. Ariados / Beedrill:</strong> Erupción + Ida y Vuelta</li>
@@ -610,11 +597,11 @@
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/tyranitar.gif" alt="Tyranitar">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/brock.png" alt="Brock">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">3. Pewter & Cerulean</div>
+                    <div class="gym-title">3. Pewter & Cerulean — Líderes: Brock y Misty</div>
                     <ul>
                         <li><strong>vs. Toxicroak / Tyranitar:</strong> Salpicar + Asegurar / Precisión X</li>
                         <li><strong>vs. Carracosta / Poliwrath:</strong> Salpicar + Explosión ➔ Pluma de Lava + Erupción</li>
@@ -629,11 +616,11 @@
             <h2>⚙️ Región Johto</h2>
             
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/metagross.gif" alt="Metagross">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/whitney.png" alt="Whitney">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">1. Olivine & Goldenrod</div>
+                    <div class="gym-title">1. Olivine & Goldenrod — Líderes: Yasmine (Jasmine) y Blanca (Whitney)</div>
                     <p>Erupción + Asegurar</p>
                     <ul>
                         <li><strong>vs. Tauros / Dodrio:</strong> Voz Arrulladora + Incineración / Erupción</li>
@@ -644,28 +631,14 @@
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/scizor.gif" alt="Scizor">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/clair.png" alt="Clair">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">2. Azalea & Mahogany</div>
+                    <div class="gym-title">2. Azalea, Mahogany & Blackthorn — Líderes: Falkner, Pryce, Clair</div>
                     <ul>
                         <li><strong>vs. Scizor + Forretress:</strong> Ida y Vuelta + Pluma de Lava</li>
                         <li><strong>vs. Articuno:</strong> Día Soleado + Erupción, Cambiar Typhlosion por Weezing</li>
-                        <li><strong>vs. Mamoswine:</strong> Precisión X + Pluma de Lava</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/machamp.gif" alt="Machamp">
-                </div>
-                <div class="gym-content">
-                    <div class="gym-title">3. Cianwood, Violet & Blackthorn</div>
-                    <ul>
-                        <li><strong>vs. Machamp / Granbull:</strong> Ataque Esp. X + Voz Arrulladora</li>
-                        <li><strong>vs. Drizzle (Malva):</strong> Rayo Hielo + Salpicar</li>
                         <li><strong>vs. Blastoise:</strong> Explosión + Amago ➔ Ventisca + Voz Arrulladora</li>
                     </ul>
                     <div class="note">⚠️ [CURACIÓN #6]</div>
@@ -678,11 +651,11 @@
             <h2>💎 Región Sinnoh</h2>
             
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/garchomp.gif" alt="Sinnoh">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/volkner.png" alt="Volkner">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">1. Oreburgh, Veilstone & Sunyshore</div>
+                    <div class="gym-title">1. Oreburgh, Veilstone & Sunyshore — Líderes: Roark, Maylene, Volkner</div>
                     <p>Salpicar / Erupción + Asegurar / Voz Arrulladora</p>
                     <ul>
                         <li><strong>vs. Tyranitar + Excadrill:</strong> Ataque Esp. X + Salpicar</li>
@@ -692,11 +665,11 @@
             </div>
 
             <div class="gym-block">
-                <div class="gym-gif-container">
-                    <img src="https://play.pokemonshowdown.com/sprites/ani/gengar.gif" alt="Gengar">
+                <div class="leader-avatar">
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/fantina.png" alt="Fantina">
                 </div>
                 <div class="gym-content">
-                    <div class="gym-title">2. Eterna, Hearthome & Pastoria</div>
+                    <div class="gym-title">2. Eterna, Hearthome & Pastoria — Líderes: Gardenia, Fantina, Crasher Wake</div>
                     <ul>
                         <li><strong>vs. Leavanny / Rotom:</strong> Ida y Vuelta + Pluma de Lava</li>
                         <li><strong>vs. Mismagius / Gengar:</strong> Pluma de Lava + Erupción, Cambio a Weezing</li>
@@ -710,24 +683,20 @@
     </div>
 
     <footer>
-        <p>Stellar Dance Guide - Ciberespacio Edition | Traducido y Adaptado para GitHub Pages</p>
+        <p>Stellar Dance Guide - Ciberespacio Comic Edition | Adaptado para GitHub Pages</p>
     </footer>
 
     <script>
         function switchRegion(regionId, regionTitle, event) {
-            // Ocultar todas las secciones
             const sections = document.querySelectorAll('.region-section');
             sections.forEach(sec => sec.classList.remove('active'));
 
-            // Desactivar todos los botones
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Mostrar la sección seleccionada y activar el botón
             document.getElementById(regionId).classList.add('active');
             event.currentTarget.classList.add('active');
 
-            // Actualizar el texto del indicador superior para que sepas exactamente dónde estás
             document.getElementById('region-name').innerText = regionTitle;
         }
     </script>
